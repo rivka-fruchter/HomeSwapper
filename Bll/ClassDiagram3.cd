@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bll.algorithm.algo1">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAEFIABAAAAAABAgBAAAQAAIgAAgAAAAAAAAA=</HashCode>
+      <FileName>algorithm\algo1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.Constants">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgBcADAAAAAAEAAAAAAAAAMAAAAAAAAQAAAAAAAQ=</HashCode>
+      <FileName>Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.db">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAQABAAKwUBBjAwEAEQEAAIAIEAIA4AAACJgJAAQQ=</HashCode>
+      <FileName>db.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.edge">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>edge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.EzerPlacment">
+    <Position X="13" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAAACAAACAAAAAAAAAAEgAAAAAIAAAAAAA=</HashCode>
+      <FileName>EzerPlacment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.Graph">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECQAAAAIAAAAAAQAAAAAAAAAAQAAAAAIQAAJAAAAA=</HashCode>
+      <FileName>Graph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.RequestResult">
+    <Position X="11.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAABAAAAAAIAAAAAA=</HashCode>
+      <FileName>RequestResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.RequseApartment">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAgAAAAAAAAAAAAAAQAACAAABAAAAAAAAAAQA=</HashCode>
+      <FileName>RequseApartment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bll.sendEmail">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAQAAAAAAAAAAAAAgAAAAAAAAAAAAAEAE=</HashCode>
+      <FileName>sendEmail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

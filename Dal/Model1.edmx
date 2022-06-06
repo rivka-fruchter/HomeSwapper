@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="swapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apartment">
+          <Key>
+            <PropertyRef Name="apartcode" />
+          </Key>
+          <Property Name="apartcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityCode" Type="int" />
+          <Property Name="Street" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="numRooms" Type="int" Nullable="false" />
+          <Property Name="numBeds" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+        </EntityType>
+        <EntityType Name="apartmentPlacement">
+          <Key>
+            <PropertyRef Name="placementCode" />
+          </Key>
+          <Property Name="placementCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apartmentCode" Type="int" Nullable="false" />
+          <Property Name="familyCode" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="Precent" Type="float" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaCode" />
+          </Key>
+          <Property Name="areaCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areaName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="city$">
+          <Key>
+            <PropertyRef Name="cityCode" />
+          </Key>
+          <Property Name="cityCode" Type="int" Nullable="false" />
+          <Property Name="cityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="area" Type="int" />
+        </EntityType>
+        <EntityType Name="Familiy">
+          <Key>
+            <PropertyRef Name="familyCode" />
+          </Key>
+          <Property Name="familyCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familyName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="apartmentCode" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="familyConstraint">
+          <Key>
+            <PropertyRef Name="constCode" />
+          </Key>
+          <Property Name="constCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familyCode" Type="int" />
+          <Property Name="cityCode" Type="int" Nullable="false" />
+          <Property Name="numRooms" Type="int" Nullable="false" />
+          <Property Name="numBeds" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+        </EntityType>
+        <EntityType Name="familyParameters">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="constCode" Type="int" />
+          <Property Name="parameterCode" Type="int" />
+        </EntityType>
+        <EntityType Name="parameter">
+          <Key>
+            <PropertyRef Name="codeParameter" />
+          </Key>
+          <Property Name="codeParameter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descrip" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametersInApart">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codeApart" Type="int" />
+          <Property Name="codeParameter" Type="int" />
+        </EntityType>
+        <EntityType Name="userDetails">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userPassword" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apartmentCode" Type="int" />
+          <Property Name="familyCode" Type="int" />
+        </EntityType>
+        <Association Name="FK__apartment__apart__37A5467C">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="1" />
+          <End Role="apartmentPlacement" Type="Self.apartmentPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="apartmentPlacement">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apartment__cityC__4222D4EF">
+          <End Role="city$" Type="Self.city$" Multiplicity="0..1" />
+          <End Role="apartment" Type="Self.apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city$">
+              <PropertyRef Name="cityCode" />
+            </Principal>
+            <Dependent Role="apartment">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apartment__famil__38996AB5">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="1" />
+          <End Role="apartmentPlacement" Type="Self.apartmentPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="apartmentPlacement">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city$__area__440B1D61">
+          <End Role="area" Type="Self.area" Multiplicity="0..1" />
+          <End Role="city$" Type="Self.city$" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaCode" />
+            </Principal>
+            <Dependent Role="city$">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Familiy__apartme__286302EC">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="Familiy">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyCon__cityC__4316F928">
+          <End Role="city$" Type="Self.city$" Multiplicity="1" />
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city$">
+              <PropertyRef Name="cityCode" />
+            </Principal>
+            <Dependent Role="familyConstraint">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyCon__famil__2B3F6F97">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="0..1" />
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="familyConstraint">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyPar__const__300424B4">
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="0..1" />
+          <End Role="familyParameters" Type="Self.familyParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="familyConstraint">
+              <PropertyRef Name="constCode" />
+            </Principal>
+            <Dependent Role="familyParameters">
+              <PropertyRef Name="constCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyPar__param__30F848ED">
+          <End Role="parameter" Type="Self.parameter" Multiplicity="0..1" />
+          <End Role="familyParameters" Type="Self.familyParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameter">
+              <PropertyRef Name="codeParameter" />
+            </Principal>
+            <Dependent Role="familyParameters">
+              <PropertyRef Name="parameterCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__parameter__codeA__33D4B598">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="parametersInApart" Type="Self.parametersInApart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="parametersInApart">
+              <PropertyRef Name="codeApart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__parameter__codeP__34C8D9D1">
+          <End Role="parameter" Type="Self.parameter" Multiplicity="0..1" />
+          <End Role="parametersInApart" Type="Self.parametersInApart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameter">
+              <PropertyRef Name="codeParameter" />
+            </Principal>
+            <Dependent Role="parametersInApart">
+              <PropertyRef Name="codeParameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userDetai__apart__3C69FB99">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="userDetails" Type="Self.userDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="userDetails">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userDetai__famil__3D5E1FD2">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="0..1" />
+          <End Role="userDetails" Type="Self.userDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="userDetails">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="swapModelStoreContainer">
+          <EntitySet Name="apartment" EntityType="Self.apartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="apartmentPlacement" EntityType="Self.apartmentPlacement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="city$" EntityType="Self.city$" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Familiy" EntityType="Self.Familiy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="familyConstraint" EntityType="Self.familyConstraint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="familyParameters" EntityType="Self.familyParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parameter" EntityType="Self.parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="parametersInApart" EntityType="Self.parametersInApart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userDetails" EntityType="Self.userDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__apartment__apart__37A5467C" Association="Self.FK__apartment__apart__37A5467C">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="apartmentPlacement" EntitySet="apartmentPlacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apartment__cityC__4222D4EF" Association="Self.FK__apartment__cityC__4222D4EF">
+            <End Role="city$" EntitySet="city$" />
+            <End Role="apartment" EntitySet="apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apartment__famil__38996AB5" Association="Self.FK__apartment__famil__38996AB5">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="apartmentPlacement" EntitySet="apartmentPlacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city$__area__440B1D61" Association="Self.FK__city$__area__440B1D61">
+            <End Role="area" EntitySet="area" />
+            <End Role="city$" EntitySet="city$" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Familiy__apartme__286302EC" Association="Self.FK__Familiy__apartme__286302EC">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="Familiy" EntitySet="Familiy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyCon__cityC__4316F928" Association="Self.FK__familyCon__cityC__4316F928">
+            <End Role="city$" EntitySet="city$" />
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyCon__famil__2B3F6F97" Association="Self.FK__familyCon__famil__2B3F6F97">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyPar__const__300424B4" Association="Self.FK__familyPar__const__300424B4">
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+            <End Role="familyParameters" EntitySet="familyParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyPar__param__30F848ED" Association="Self.FK__familyPar__param__30F848ED">
+            <End Role="parameter" EntitySet="parameter" />
+            <End Role="familyParameters" EntitySet="familyParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__parameter__codeA__33D4B598" Association="Self.FK__parameter__codeA__33D4B598">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="parametersInApart" EntitySet="parametersInApart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__parameter__codeP__34C8D9D1" Association="Self.FK__parameter__codeP__34C8D9D1">
+            <End Role="parameter" EntitySet="parameter" />
+            <End Role="parametersInApart" EntitySet="parametersInApart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userDetai__apart__3C69FB99" Association="Self.FK__userDetai__apart__3C69FB99">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="userDetails" EntitySet="userDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userDetai__famil__3D5E1FD2" Association="Self.FK__userDetai__famil__3D5E1FD2">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="userDetails" EntitySet="userDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="swapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="apartment">
+          <Key>
+            <PropertyRef Name="apartcode" />
+          </Key>
+          <Property Name="apartcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityCode" Type="Int32" />
+          <Property Name="Street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numRooms" Type="Int32" Nullable="false" />
+          <Property Name="numBeds" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="apartmentPlacement" Relationship="Self.FK__apartment__apart__37A5467C" FromRole="apartment" ToRole="apartmentPlacement" />
+          <NavigationProperty Name="city_" Relationship="Self.FK__apartment__cityC__4222D4EF" FromRole="apartment" ToRole="city_" />
+          <NavigationProperty Name="Familiy" Relationship="Self.FK__Familiy__apartme__286302EC" FromRole="apartment" ToRole="Familiy" />
+          <NavigationProperty Name="parametersInApart" Relationship="Self.FK__parameter__codeA__33D4B598" FromRole="apartment" ToRole="parametersInApart" />
+          <NavigationProperty Name="userDetails" Relationship="Self.FK__userDetai__apart__3C69FB99" FromRole="apartment" ToRole="userDetails" />
+        </EntityType>
+        <EntityType Name="apartmentPlacement">
+          <Key>
+            <PropertyRef Name="placementCode" />
+          </Key>
+          <Property Name="placementCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apartmentCode" Type="Int32" Nullable="false" />
+          <Property Name="familyCode" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="Precent" Type="Double" />
+          <NavigationProperty Name="apartment" Relationship="Self.FK__apartment__apart__37A5467C" FromRole="apartmentPlacement" ToRole="apartment" />
+          <NavigationProperty Name="Familiy" Relationship="Self.FK__apartment__famil__38996AB5" FromRole="apartmentPlacement" ToRole="Familiy" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaCode" />
+          </Key>
+          <Property Name="areaCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areaName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="city_" Relationship="Self.FK__city___area__440B1D61" FromRole="area" ToRole="city_" />
+        </EntityType>
+        <EntityType Name="city_">
+          <Key>
+            <PropertyRef Name="cityCode" />
+          </Key>
+          <Property Name="cityCode" Type="Int32" Nullable="false" />
+          <Property Name="cityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="area" Type="Int32" />
+          <NavigationProperty Name="apartment" Relationship="Self.FK__apartment__cityC__4222D4EF" FromRole="city_" ToRole="apartment" />
+          <NavigationProperty Name="area1" Relationship="Self.FK__city___area__440B1D61" FromRole="city_" ToRole="area" />
+          <NavigationProperty Name="familyConstraint" Relationship="Self.FK__familyCon__cityC__4316F928" FromRole="city_" ToRole="familyConstraint" />
+        </EntityType>
+        <EntityType Name="Familiy">
+          <Key>
+            <PropertyRef Name="familyCode" />
+          </Key>
+          <Property Name="familyCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apartmentCode" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="apartment" Relationship="Self.FK__Familiy__apartme__286302EC" FromRole="Familiy" ToRole="apartment" />
+          <NavigationProperty Name="apartmentPlacement" Relationship="Self.FK__apartment__famil__38996AB5" FromRole="Familiy" ToRole="apartmentPlacement" />
+          <NavigationProperty Name="familyConstraint" Relationship="Self.FK__familyCon__famil__2B3F6F97" FromRole="Familiy" ToRole="familyConstraint" />
+          <NavigationProperty Name="userDetails" Relationship="Self.FK__userDetai__famil__3D5E1FD2" FromRole="Familiy" ToRole="userDetails" />
+        </EntityType>
+        <EntityType Name="familyConstraint">
+          <Key>
+            <PropertyRef Name="constCode" />
+          </Key>
+          <Property Name="constCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familyCode" Type="Int32" />
+          <Property Name="cityCode" Type="Int32" Nullable="false" />
+          <Property Name="numRooms" Type="Int32" Nullable="false" />
+          <Property Name="numBeds" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="city_" Relationship="Self.FK__familyCon__cityC__4316F928" FromRole="familyConstraint" ToRole="city_" />
+          <NavigationProperty Name="Familiy" Relationship="Self.FK__familyCon__famil__2B3F6F97" FromRole="familyConstraint" ToRole="Familiy" />
+          <NavigationProperty Name="familyParameters" Relationship="Self.FK__familyPar__const__300424B4" FromRole="familyConstraint" ToRole="familyParameters" />
+        </EntityType>
+        <EntityType Name="familyParameters">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="constCode" Type="Int32" />
+          <Property Name="parameterCode" Type="Int32" />
+          <NavigationProperty Name="familyConstraint" Relationship="Self.FK__familyPar__const__300424B4" FromRole="familyParameters" ToRole="familyConstraint" />
+          <NavigationProperty Name="parameter" Relationship="Self.FK__familyPar__param__30F848ED" FromRole="familyParameters" ToRole="parameter" />
+        </EntityType>
+        <EntityType Name="parameter">
+          <Key>
+            <PropertyRef Name="codeParameter" />
+          </Key>
+          <Property Name="codeParameter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descrip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="familyParameters" Relationship="Self.FK__familyPar__param__30F848ED" FromRole="parameter" ToRole="familyParameters" />
+          <NavigationProperty Name="parametersInApart" Relationship="Self.FK__parameter__codeP__34C8D9D1" FromRole="parameter" ToRole="parametersInApart" />
+        </EntityType>
+        <EntityType Name="parametersInApart">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codeApart" Type="Int32" />
+          <Property Name="codeParameter" Type="Int32" />
+          <NavigationProperty Name="apartment" Relationship="Self.FK__parameter__codeA__33D4B598" FromRole="parametersInApart" ToRole="apartment" />
+          <NavigationProperty Name="parameter" Relationship="Self.FK__parameter__codeP__34C8D9D1" FromRole="parametersInApart" ToRole="parameter" />
+        </EntityType>
+        <EntityType Name="userDetails">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apartmentCode" Type="Int32" />
+          <Property Name="familyCode" Type="Int32" />
+          <NavigationProperty Name="apartment" Relationship="Self.FK__userDetai__apart__3C69FB99" FromRole="userDetails" ToRole="apartment" />
+          <NavigationProperty Name="Familiy" Relationship="Self.FK__userDetai__famil__3D5E1FD2" FromRole="userDetails" ToRole="Familiy" />
+        </EntityType>
+        <Association Name="FK__apartment__apart__37A5467C">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="1" />
+          <End Role="apartmentPlacement" Type="Self.apartmentPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="apartmentPlacement">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apartment__cityC__4222D4EF">
+          <End Role="city_" Type="Self.city_" Multiplicity="0..1" />
+          <End Role="apartment" Type="Self.apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_">
+              <PropertyRef Name="cityCode" />
+            </Principal>
+            <Dependent Role="apartment">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Familiy__apartme__286302EC">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="Familiy">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__parameter__codeA__33D4B598">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="parametersInApart" Type="Self.parametersInApart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="parametersInApart">
+              <PropertyRef Name="codeApart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userDetai__apart__3C69FB99">
+          <End Role="apartment" Type="Self.apartment" Multiplicity="0..1" />
+          <End Role="userDetails" Type="Self.userDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartment">
+              <PropertyRef Name="apartcode" />
+            </Principal>
+            <Dependent Role="userDetails">
+              <PropertyRef Name="apartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__apartment__famil__38996AB5">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="1" />
+          <End Role="apartmentPlacement" Type="Self.apartmentPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="apartmentPlacement">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city___area__440B1D61">
+          <End Role="area" Type="Self.area" Multiplicity="0..1" />
+          <End Role="city_" Type="Self.city_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaCode" />
+            </Principal>
+            <Dependent Role="city_">
+              <PropertyRef Name="area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyCon__cityC__4316F928">
+          <End Role="city_" Type="Self.city_" Multiplicity="1" />
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_">
+              <PropertyRef Name="cityCode" />
+            </Principal>
+            <Dependent Role="familyConstraint">
+              <PropertyRef Name="cityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyCon__famil__2B3F6F97">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="0..1" />
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="familyConstraint">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userDetai__famil__3D5E1FD2">
+          <End Role="Familiy" Type="Self.Familiy" Multiplicity="0..1" />
+          <End Role="userDetails" Type="Self.userDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Familiy">
+              <PropertyRef Name="familyCode" />
+            </Principal>
+            <Dependent Role="userDetails">
+              <PropertyRef Name="familyCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyPar__const__300424B4">
+          <End Role="familyConstraint" Type="Self.familyConstraint" Multiplicity="0..1" />
+          <End Role="familyParameters" Type="Self.familyParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="familyConstraint">
+              <PropertyRef Name="constCode" />
+            </Principal>
+            <Dependent Role="familyParameters">
+              <PropertyRef Name="constCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__familyPar__param__30F848ED">
+          <End Role="parameter" Type="Self.parameter" Multiplicity="0..1" />
+          <End Role="familyParameters" Type="Self.familyParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameter">
+              <PropertyRef Name="codeParameter" />
+            </Principal>
+            <Dependent Role="familyParameters">
+              <PropertyRef Name="parameterCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__parameter__codeP__34C8D9D1">
+          <End Role="parameter" Type="Self.parameter" Multiplicity="0..1" />
+          <End Role="parametersInApart" Type="Self.parametersInApart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="parameter">
+              <PropertyRef Name="codeParameter" />
+            </Principal>
+            <Dependent Role="parametersInApart">
+              <PropertyRef Name="codeParameter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="swapEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="apartment" EntityType="Self.apartment" />
+          <EntitySet Name="apartmentPlacement" EntityType="Self.apartmentPlacement" />
+          <EntitySet Name="area" EntityType="Self.area" />
+          <EntitySet Name="city_" EntityType="Self.city_" />
+          <EntitySet Name="Familiy" EntityType="Self.Familiy" />
+          <EntitySet Name="familyConstraint" EntityType="Self.familyConstraint" />
+          <EntitySet Name="familyParameters" EntityType="Self.familyParameters" />
+          <EntitySet Name="parameter" EntityType="Self.parameter" />
+          <EntitySet Name="parametersInApart" EntityType="Self.parametersInApart" />
+          <EntitySet Name="userDetails" EntityType="Self.userDetails" />
+          <AssociationSet Name="FK__apartment__apart__37A5467C" Association="Self.FK__apartment__apart__37A5467C">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="apartmentPlacement" EntitySet="apartmentPlacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apartment__cityC__4222D4EF" Association="Self.FK__apartment__cityC__4222D4EF">
+            <End Role="city_" EntitySet="city_" />
+            <End Role="apartment" EntitySet="apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Familiy__apartme__286302EC" Association="Self.FK__Familiy__apartme__286302EC">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="Familiy" EntitySet="Familiy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__parameter__codeA__33D4B598" Association="Self.FK__parameter__codeA__33D4B598">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="parametersInApart" EntitySet="parametersInApart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userDetai__apart__3C69FB99" Association="Self.FK__userDetai__apart__3C69FB99">
+            <End Role="apartment" EntitySet="apartment" />
+            <End Role="userDetails" EntitySet="userDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__apartment__famil__38996AB5" Association="Self.FK__apartment__famil__38996AB5">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="apartmentPlacement" EntitySet="apartmentPlacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city___area__440B1D61" Association="Self.FK__city___area__440B1D61">
+            <End Role="area" EntitySet="area" />
+            <End Role="city_" EntitySet="city_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyCon__cityC__4316F928" Association="Self.FK__familyCon__cityC__4316F928">
+            <End Role="city_" EntitySet="city_" />
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyCon__famil__2B3F6F97" Association="Self.FK__familyCon__famil__2B3F6F97">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userDetai__famil__3D5E1FD2" Association="Self.FK__userDetai__famil__3D5E1FD2">
+            <End Role="Familiy" EntitySet="Familiy" />
+            <End Role="userDetails" EntitySet="userDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyPar__const__300424B4" Association="Self.FK__familyPar__const__300424B4">
+            <End Role="familyConstraint" EntitySet="familyConstraint" />
+            <End Role="familyParameters" EntitySet="familyParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__familyPar__param__30F848ED" Association="Self.FK__familyPar__param__30F848ED">
+            <End Role="parameter" EntitySet="parameter" />
+            <End Role="familyParameters" EntitySet="familyParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__parameter__codeP__34C8D9D1" Association="Self.FK__parameter__codeP__34C8D9D1">
+            <End Role="parameter" EntitySet="parameter" />
+            <End Role="parametersInApart" EntitySet="parametersInApart" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="swapModelStoreContainer" CdmEntityContainer="swapEntities">
+          <EntitySetMapping Name="apartment">
+            <EntityTypeMapping TypeName="swapModel.apartment">
+              <MappingFragment StoreEntitySet="apartment">
+                <ScalarProperty Name="apartcode" ColumnName="apartcode" />
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="numRooms" ColumnName="numRooms" />
+                <ScalarProperty Name="numBeds" ColumnName="numBeds" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="apartmentPlacement">
+            <EntityTypeMapping TypeName="swapModel.apartmentPlacement">
+              <MappingFragment StoreEntitySet="apartmentPlacement">
+                <ScalarProperty Name="placementCode" ColumnName="placementCode" />
+                <ScalarProperty Name="apartmentCode" ColumnName="apartmentCode" />
+                <ScalarProperty Name="familyCode" ColumnName="familyCode" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="Precent" ColumnName="Precent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="area">
+            <EntityTypeMapping TypeName="swapModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="areaCode" ColumnName="areaCode" />
+                <ScalarProperty Name="areaName" ColumnName="areaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="city_">
+            <EntityTypeMapping TypeName="swapModel.city_">
+              <MappingFragment StoreEntitySet="city$">
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="area" ColumnName="area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Familiy">
+            <EntityTypeMapping TypeName="swapModel.Familiy">
+              <MappingFragment StoreEntitySet="Familiy">
+                <ScalarProperty Name="familyCode" ColumnName="familyCode" />
+                <ScalarProperty Name="familyName" ColumnName="familyName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="apartmentCode" ColumnName="apartmentCode" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="familyConstraint">
+            <EntityTypeMapping TypeName="swapModel.familyConstraint">
+              <MappingFragment StoreEntitySet="familyConstraint">
+                <ScalarProperty Name="constCode" ColumnName="constCode" />
+                <ScalarProperty Name="familyCode" ColumnName="familyCode" />
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="numRooms" ColumnName="numRooms" />
+                <ScalarProperty Name="numBeds" ColumnName="numBeds" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="familyParameters">
+            <EntityTypeMapping TypeName="swapModel.familyParameters">
+              <MappingFragment StoreEntitySet="familyParameters">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="constCode" ColumnName="constCode" />
+                <ScalarProperty Name="parameterCode" ColumnName="parameterCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parameter">
+            <EntityTypeMapping TypeName="swapModel.parameter">
+              <MappingFragment StoreEntitySet="parameter">
+                <ScalarProperty Name="codeParameter" ColumnName="codeParameter" />
+                <ScalarProperty Name="descrip" ColumnName="descrip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametersInApart">
+            <EntityTypeMapping TypeName="swapModel.parametersInApart">
+              <MappingFragment StoreEntitySet="parametersInApart">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="codeApart" ColumnName="codeApart" />
+                <ScalarProperty Name="codeParameter" ColumnName="codeParameter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userDetails">
+            <EntityTypeMapping TypeName="swapModel.userDetails">
+              <MappingFragment StoreEntitySet="userDetails">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="apartmentCode" ColumnName="apartmentCode" />
+                <ScalarProperty Name="familyCode" ColumnName="familyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

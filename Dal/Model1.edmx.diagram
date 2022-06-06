@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e8107f8c286491180e980747c030ec3" Name="Diagram1">
+        <EntityTypeShape EntityType="swapModel.apartment" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.apartmentPlacement" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.area" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.city_" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.Familiy" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.familyConstraint" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.familyParameters" Width="1.5" PointX="15" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.parameter" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.parametersInApart" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="swapModel.userDetails" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="swapModel.FK__apartment__apart__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__apartment__cityC__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__Familiy__apartme__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__parameter__codeA__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__userDetai__apart__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__apartment__famil__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__city___area__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__familyCon__cityC__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__familyCon__famil__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__userDetai__famil__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__familyPar__const__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__familyPar__param__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="swapModel.FK__parameter__codeP__34C8D9D1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

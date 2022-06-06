@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Dto.apartmentDto">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAABAAAAAQAAAACAAAAAIACAAAAAAAAIIAAAAAQA=</HashCode>
+      <FileName>apartmentDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.aprtPlacmentDto">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABgAAAAAAAAQAAAACACAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>aprtPlacmentDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.areaDto">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAABAAAAAIAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>areaDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.cityDto">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAQAAAAAAAAAAIAAAABAAAAAAIAAAAAAA=</HashCode>
+      <FileName>cityDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.familyConstDto">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAQAAAACACABAIACAAAAAAAAAIAAAAAQA=</HashCode>
+      <FileName>familyConstDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.familyDto">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAkAAAAAAAAQAAgAAACAAAIAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>familyDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.familyParmeterDto">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAABAIIAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>familyParmeterDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.parameterDto">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAIAAAAgAAAAAAAAAAQAAA=</HashCode>
+      <FileName>parameterDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.parInApartDto">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAIIAAAgACAAAAAAAAAAAA=</HashCode>
+      <FileName>parInApartDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dto.userDto">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgAAAAAAAAQAAACAACAAAIAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>userDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
