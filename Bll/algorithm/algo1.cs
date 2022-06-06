@@ -4,6 +4,7 @@ using System.Linq;
 using Dto;
 namespace Bll.algorithm
 {
+    //graph
     public class algo1
     {
         //פונקצית bfs למציאת מסלול ממקור ליעד
