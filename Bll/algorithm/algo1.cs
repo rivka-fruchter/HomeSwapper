@@ -53,6 +53,7 @@ namespace Bll.algorithm
                 v.statusColor = Constants.DEFINEBLACK;//גמרתי לטפל מסומן כשחור
                 vertexQ.Dequeue();//הוצאה מהתור
             }
+
             //אם לא נמצאה דרך מהמקור ליעד
             if (targetV.dist == -1)
                 return (null, null, myGraph);
@@ -317,9 +318,6 @@ namespace Bll.algorithm
             }
             return familyNotCorssCode;
         }
-
-
-
         //פונקציה שעוברת על רשימת משפחות ומחפשת את המשפחה של קוד הדירה שהתקבלה
         public familyVertex findFamilyInList(int code, List<familyVertex> listF)
         {

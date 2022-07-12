@@ -14,7 +14,7 @@ namespace full_project.Controllers
         //מכאן אני מפעילה את האלגוריתם
         public RequestResult Get()
         {
-            //
+            //הפעלת הפונקציה הראשית
             List<int> notCorss = algo.mainFunction();
             
             //שליחת מייל למשפחות שהשתבצו

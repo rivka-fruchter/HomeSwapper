@@ -54,8 +54,6 @@ namespace Bll
                             //חיבור קשת בין משפחה לדירה
                             listF[i].precent = val1 / Constants.DEFINE25;
                             edge e = new edge();
-
-
                             vertex vFrom=listF[i];
                             vertex vTo= listA[j];                           
                             e.from = vFrom;

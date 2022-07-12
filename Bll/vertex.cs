@@ -8,6 +8,7 @@ namespace Bll
         public bool isEmbedded { get; set; }
         //רשימת קשתות מחוברת אל הצומת
         public List<edge> edgeLst { get; set; }
+        //קשור לפונקציה bfs
         //(סטטוס (צבע
         public string statusColor { get; set; }
         //מרחק
